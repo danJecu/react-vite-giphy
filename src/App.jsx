@@ -1,16 +1,27 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+// Context
 import { GifsProvider } from './contexts/GifsContext';
-import GifsList from './components/GifsList';
+// Components
 import Navbar from './components/Navbar';
+// Pages
+import Home from './pages/Home';
+import Favorites from './pages/Favorites';
 
 function App() {
-  return (
-    <div>
-      <GifsProvider>
-        <Navbar />
-        <GifsList />
-      </GifsProvider>
-    </div>
-  );
+    return (
+        <div>
+            <Router>
+                <GifsProvider>
+                    <Navbar />
+                    <Routes>
+                        <Route path='/' element={<Home />} />
+                        <Route path='/favorites' element={<Favorites />} />
+                    </Routes>
+                </GifsProvider>
+            </Router>
+        </div>
+    );
 }
 
 export default App;

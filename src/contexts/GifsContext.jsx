@@ -3,70 +3,77 @@ import { createContext, useEffect, useReducer } from 'react';
 export const GifsContext = createContext();
 
 const initialState = {
-  trendGifs: [],
-  searchGifs: [],
-  favoriteGifs: [],
-  error: null,
+    trendGifs: [],
+    searchGifs: [],
+    favoriteGifs: [],
+    error: null,
 };
 
 const gifsReducer = (state, action) => {
-  switch (action.type) {
-    case 'SET_TRENDING':
-      return { ...state, trendGifs: action.payload };
-    case 'SET_SEARCH':
-      return { ...state, searchGifs: action.payload };
-    case 'SET_FAVORITE':
-      return {
-        ...state,
-        favoriteGifs: [...state.favoriteGifs, action.payload],
-      };
-    case 'SET_ERORR':
-      return {
-        ...state,
-        error: action.payload,
-      };
-    default:
-      return state;
-  }
+    switch (action.type) {
+        case 'SET_TRENDING':
+            return { ...state, trendGifs: action.payload };
+        case 'SET_SEARCH':
+            return { ...state, searchGifs: action.payload };
+        case 'ADD_FAVORITE':
+            return {
+                ...state,
+                favoriteGifs: [...state.favoriteGifs, action.payload],
+            };
+        case 'REMOVE_FAVORITE':
+            return {
+                ...state,
+                favoriteGifs: state.favoriteGifs.filter(
+                    gif => gif.id !== action.payload.id
+                ),
+            };
+        case 'SET_ERORR':
+            return {
+                ...state,
+                error: action.payload,
+            };
+        default:
+            return state;
+    }
 };
 
 export const GifsProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(gifsReducer, initialState);
+    const [state, dispatch] = useReducer(gifsReducer, initialState);
 
-  useEffect(() => {
-    const fetchTrendingGifs = async () => {
-      try {
-        const response = await fetch(
-          `https://api.giphy.com/v1/gifs/trending?api_key=${
-            import.meta.env.VITE_KEY
-          }&limit=30`
-        );
-        const data = await response.json();
-        dispatch({ type: 'SET_TRENDING', payload: data.data });
-      } catch (error) {
-        dispatch({ type: 'SET_ERROR', payload: error.message });
-      }
+    useEffect(() => {
+        const fetchTrendingGifs = async () => {
+            try {
+                const response = await fetch(
+                    `https://api.giphy.com/v1/gifs/trending?api_key=${
+                        import.meta.env.VITE_KEY
+                    }&limit=30`
+                );
+                const data = await response.json();
+                dispatch({ type: 'SET_TRENDING', payload: data.data });
+            } catch (error) {
+                dispatch({ type: 'SET_ERROR', payload: error.message });
+            }
+        };
+        fetchTrendingGifs();
+    }, []);
+
+    const searchGifsAction = async query => {
+        try {
+            const response = await fetch(
+                `https://api.giphy.com/v1/gifs/search?api_key=${
+                    import.meta.env.VITE_KEY
+                }&q=${query}&limit=30`
+            );
+            const data = await response.json();
+            dispatch({ type: 'SET_SEARCH', payload: data.data });
+        } catch (error) {
+            dispatch({ type: 'SET_ERROR', payload: error.message });
+        }
     };
-    fetchTrendingGifs();
-  }, []);
 
-  const searchGifsAction = async (query) => {
-    try {
-      const response = await fetch(
-        `https://api.giphy.com/v1/gifs/search?api_key=${
-          import.meta.env.VITE_KEY
-        }&q=${query}&limit=30`
-      );
-      const data = await response.json();
-      dispatch({ type: 'SET_SEARCH', payload: data.data });
-    } catch (error) {
-      dispatch({ type: 'SET_ERROR', payload: error.message });
-    }
-  };
-
-  return (
-    <GifsContext.Provider value={{ ...state, searchGifsAction }}>
-      {children}
-    </GifsContext.Provider>
-  );
+    return (
+        <GifsContext.Provider value={{ ...state, searchGifsAction, dispatch }}>
+            {children}
+        </GifsContext.Provider>
+    );
 };

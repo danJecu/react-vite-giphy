@@ -5,34 +5,44 @@ import { GifsContext } from '../contexts/GifsContext';
 import GifItem from './GifItem';
 
 export default function GifsList() {
-  const { trendGifs, searchGifs, error } = useContext(GifsContext);
+    const { trendGifs, searchGifs, error, dispatch } = useContext(GifsContext);
 
-  if (error) {
-    return <div className="container">Server error</div>;
-  }
+    const handleFavorite = id => {
+        const gif =
+            searchGifs.find(g => g.id === id) ||
+            trendGifs.find(g => g.id === id);
+        const isFavorite = favoriteGifs.some(f => f.id === id);
+        if (isFavorite) {
+            dispatch({ type: 'REMOVE_FAVORITE', payload: id });
+        } else {
+            dispatch({ type: 'ADD_FAVORITE', payload: gif });
+        }
+    };
 
-  if (searchGifs.length) {
+    if (error) {
+        return <div className='container'>Server error</div>;
+    }
+
+    if (searchGifs.length) {
+        return (
+            <div className='container'>
+                {searchGifs.map(gif => (
+                    <GifItem key={gif.id} gif={gif} />
+                ))}
+            </div>
+        );
+    }
     return (
-      <div className="container">
-        <div>
-          {searchGifs.map((gif) => (
-            <GifItem key={gif.id} gif={gif} />
-          ))}
-        </div>
-      </div>
+        <>
+            {trendGifs.length ? (
+                <div className='container'>
+                    {trendGifs.map(gif => (
+                        <GifItem key={gif.id} gif={gif} />
+                    ))}
+                </div>
+            ) : (
+                <p>Loading...</p>
+            )}
+        </>
     );
-  }
-  return (
-    <div className="container">
-      {trendGifs.length ? (
-        <div>
-          {trendGifs.map((gif) => (
-            <GifItem key={gif.id} gif={gif} />
-          ))}
-        </div>
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
-  );
 }
