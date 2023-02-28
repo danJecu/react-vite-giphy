@@ -50,5 +50,23 @@ export const GifsProvider = ({ children }) => {
     fetchTrendingGifs();
   }, []);
 
-  return <GifsContext.Provider value={state}>{children}</GifsContext.Provider>;
+  const searchGifsAction = async (query) => {
+    try {
+      const response = await fetch(
+        `https://api.giphy.com/v1/gifs/search?api_key=${
+          import.meta.env.VITE_KEY
+        }&q=${query}&limit=30`
+      );
+      const data = await response.json();
+      dispatch({ type: 'SET_SEARCH', payload: data.data });
+    } catch (error) {
+      dispatch({ type: 'SET_ERROR', payload: error.message });
+    }
+  };
+
+  return (
+    <GifsContext.Provider value={{ ...state, searchGifsAction }}>
+      {children}
+    </GifsContext.Provider>
+  );
 };
