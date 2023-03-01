@@ -1,130 +1,186 @@
 @import url('https://fonts.googleapis.com/css2?family=Carter+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
-    --font-primary: 'Poppins', sans-serif;
-    --font-logo: 'Carter One', cursive;
+  --font-primary: 'Poppins', sans-serif;
+  --font-logo: 'Carter One', cursive;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  padding: 0.1rem 2rem;
 }
 
 .navbar {
-    display: flex;
-    width: 100vw;
-    justify-content: space-between;
-    align-items: center;
-    height: 10vh;
-    font-family: var(--font-primary);
-
-    border-bottom: 1px solid rgb(206, 204, 204);
-    position: sticky;
-    top: 0;
-    background-color: white;
-    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px,
-        rgba(17, 17, 26, 0.1) 0px 0px 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 10vh;
+  font-family: var(--font-primary);
+  position: sticky;
+  top: 0;
+  background-color: white;
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px,
+    rgba(17, 17, 26, 0.1) 0px 0px 8px;
 }
 
 .logo {
-    padding-left: 1rem;
-    font-size: 2.5rem;
-    font-family: var(--font-logo);
-    letter-spacing: 0.3rem;
+  font-size: 2.5rem;
+  font-family: var(--font-logo);
+  letter-spacing: 0.3rem;
+  cursor: pointer;
 }
 
 .logo a {
-    text-decoration: none;
-    color: black;
+  text-decoration: none;
+  color: black;
 }
 
 .navbar-input {
-    height: 70%;
-    display: flex;
-    align-items: center;
+  height: 70%;
+  display: flex;
+  align-items: center;
 }
 
 .navbar-input input {
-    font-size: 1.5rem;
-    height: 20%;
-    padding: 1rem;
-    width: 30rem;
-    border: none;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-        rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-    font-family: var(--font);
+  font-size: 1.5rem;
+  height: 20%;
+  padding: 1rem;
+  width: 30rem;
+  border: none;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  font-family: var(--font);
 }
 
 .navbar-input input:focus {
-    border: none;
-    border-radius: 6px;
-    box-shadow: 0 0 0 3px transparent, 0 0 0 4px #0093e9;
-    background-image: linear-gradient(white, white),
-        linear-gradient(to right, #0093e9, #43b0a4);
-    background-origin: border-box;
-    background-clip: padding-box, border-box;
-    color: black;
-    outline: none;
-    animation: border-animation 2s linear infinite;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 0 0 3px transparent, 0 0 0 4px #0093e9;
+  background-image: linear-gradient(white, white),
+    linear-gradient(to right, #0093e9, #43b0a4);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  color: black;
+  outline: none;
+  animation: border-animation 2s linear infinite;
 }
 
 @keyframes border-animation {
-    0% {
-        box-shadow: 0 0 0 3px transparent, 0 0 0 4px #e1e900;
-    }
-    50% {
-        box-shadow: 0 0 0 3px #0093e9, 0 0 0 4px transparent;
-    }
-    100% {
-        box-shadow: 0 0 0 3px transparent, 0 0 0 4px #e1e900;
-    }
+  0% {
+    box-shadow: 0 0 0 3px transparent, 0 0 0 4px #e1e900;
+  }
+  50% {
+    box-shadow: 0 0 0 3px #0093e9, 0 0 0 4px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 3px transparent, 0 0 0 4px #e1e900;
+  }
 }
 
 .navbar-tabs {
-    list-style: none;
-    display: flex;
-    gap: 2rem;
-    padding-right: 1rem;
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  padding-right: 1rem;
 }
 
 .navbar-tabs li a {
-    text-decoration: none;
-    color: black;
-    font-weight: 700;
-    font-size: 1.2rem;
+  text-decoration: none;
+  color: black;
+  font-weight: 700;
+  font-size: 1.2rem;
 }
 
 .navbar-tabs li a:active {
-    color: #0093e9;
+  color: #0093e9;
 }
 
 .selected-link {
-    border-bottom: 2px solid #0093e9;
+  border-bottom: 2px solid #0093e9;
 }
 
 .container {
-    padding: 2rem 0;
-    display: flex;
-    gap: 2rem;
-    width: 100vw;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+  padding: 2rem 0;
+  display: flex;
+  gap: 4rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.container h1 {
+  text-align: center;
+  font-family: var(--font-primary);
+  color: #000;
+  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff,
+    0 0 42px rgb(173, 4, 207), 0 0 82px rgb(173, 4, 207),
+    0 0 92px rgb(173, 4, 207), 0 0 102px rgb(173, 4, 207),
+    0 0 151px rgb(173, 4, 207);
 }
 
 .gif-img {
-    width: 20rem;
-    height: 20rem;
+  width: 20rem;
+  height: 20rem;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
 .favorite {
-    box-shadow: rgba(252, 50, 0, 0.959) 6px 2px 16px 0px,
-        rgb(247, 123, 123) -6px -2px 16px 0px;
-    color: red;
+  box-shadow: rgba(252, 50, 0, 0.959) 10px 12px 5px 0px,
+    rgb(247, 123, 123) -10px -4px 16px 0px;
 }
 
 .favorite:hover {
-    box-shadow: rgba(142, 30, 2, 0.959) 6px 2px 16px 0px,
-        rgb(219, 87, 87) -6px -2px 16px 0px;
+  box-shadow: rgba(142, 30, 2, 0.959) 6px 2px 16px 2px,
+    rgb(219, 87, 87) -6px -2px 16px 0px;
+}
+
+.favorite:active {
+  box-shadow: rgba(53, 52, 51, 0.959) 10px 12px 5px 0px,
+    rgb(209, 153, 153) -10px -4px 16px 0px;
+}
+
+@media screen and (max-width: 425px) {
+  .logo {
+    display: none;
+  }
+
+  .navbar {
+    flex-direction: column-reverse;
+    height: 10vh;
+    justify-content: center;
+  }
+
+  .navbar-input input {
+    width: 80vw;
+    font-size: 1rem;
+    padding: 0.6rem;
+    margin: 0;
+  }
+
+  .navbar-tabs {
+    padding: 0;
+    margin: 0.2rem;
+  }
+
+  .navbar-tabs li a {
+    font-size: 0.8rem;
+  }
+
+  .gif-img {
+    width: 18rem;
+    height: 18rem;
+  }
+}
+
+@media screen and (max-widt: 770px) and (min-width: 425px) {
+  .navbar {
+    padding: 10rem;
+  }
 }
