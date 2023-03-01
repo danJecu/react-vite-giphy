@@ -5,18 +5,11 @@ import { GifsContext } from '../contexts/GifsContext';
 import GifItem from './GifItem';
 
 export default function GifsList() {
-    const { trendGifs, searchGifs, error, dispatch } = useContext(GifsContext);
+    const { trendGifs, searchGifs, favoriteGifs, error, dispatch } =
+        useContext(GifsContext);
 
-    const handleFavorite = id => {
-        const gif =
-            searchGifs.find(g => g.id === id) ||
-            trendGifs.find(g => g.id === id);
-        const isFavorite = favoriteGifs.some(f => f.id === id);
-        if (isFavorite) {
-            dispatch({ type: 'REMOVE_FAVORITE', payload: id });
-        } else {
-            dispatch({ type: 'ADD_FAVORITE', payload: gif });
-        }
+    const handleFavorite = gif => {
+        dispatch({ type: 'TOGGLE_FAVORITE', payload: { gif } });
     };
 
     if (error) {
@@ -27,7 +20,12 @@ export default function GifsList() {
         return (
             <div className='container'>
                 {searchGifs.map(gif => (
-                    <GifItem key={gif.id} gif={gif} />
+                    <GifItem
+                        key={gif.id}
+                        gif={gif}
+                        handleFavorite={handleFavorite}
+                        favoriteGifs={favoriteGifs}
+                    />
                 ))}
             </div>
         );
@@ -37,7 +35,12 @@ export default function GifsList() {
             {trendGifs.length ? (
                 <div className='container'>
                     {trendGifs.map(gif => (
-                        <GifItem key={gif.id} gif={gif} />
+                        <GifItem
+                            key={gif.id}
+                            gif={gif}
+                            handleFavorite={handleFavorite}
+                            favoriteGifs={favoriteGifs}
+                        />
                     ))}
                 </div>
             ) : (

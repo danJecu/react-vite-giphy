@@ -15,18 +15,27 @@ const gifsReducer = (state, action) => {
             return { ...state, trendGifs: action.payload };
         case 'SET_SEARCH':
             return { ...state, searchGifs: action.payload };
-        case 'ADD_FAVORITE':
-            return {
-                ...state,
-                favoriteGifs: [...state.favoriteGifs, action.payload],
-            };
-        case 'REMOVE_FAVORITE':
-            return {
-                ...state,
-                favoriteGifs: state.favoriteGifs.filter(
-                    gif => gif.id !== action.payload.id
-                ),
-            };
+        case 'TOGGLE_FAVORITE': {
+            const { gif } = action.payload;
+            const index = state.favoriteGifs.findIndex(
+                favGif => favGif.id === gif.id
+            );
+            if (index === -1) {
+                // gif is not in favorites, add it
+                return {
+                    ...state,
+                    favoriteGifs: [...state.favoriteGifs, gif],
+                };
+            } else {
+                // gif is in favorites, remove it
+                const updatedFavorites = [...state.favoriteGifs];
+                updatedFavorites.splice(index, 1);
+                return {
+                    ...state,
+                    favoriteGifs: updatedFavorites,
+                };
+            }
+        }
         case 'SET_ERORR':
             return {
                 ...state,
