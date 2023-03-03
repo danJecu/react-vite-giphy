@@ -40,7 +40,7 @@ export default function Navbar() {
           <Link
             to="/"
             className={selectedLink === '/' ? 'selected-link' : '/'}
-            onChange={handleLinkClick}
+            onClick={handleLinkClick}
           >
             Home
           </Link>

@@ -25,7 +25,7 @@ export default function Favorites() {
           <img
             src="https://media.giphy.com/media/xUNd9Zb2FY1WUXy8WQ/giphy.gif"
             alt="no favorite gifs"
-            className="gif-img"
+            className="gif-default"
           />
         </div>
       )}

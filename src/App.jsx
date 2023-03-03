@@ -9,19 +9,19 @@ import Home from './pages/Home';
 import Favorites from './pages/Favorites';
 
 function App() {
-    return (
-        <div>
-            <Router>
-                <GifsProvider>
-                    <Navbar />
-                    <Routes>
-                        <Route path='/' element={<Home />} />
-                        <Route path='/favorites' element={<Favorites />} />
-                    </Routes>
-                </GifsProvider>
-            </Router>
-        </div>
-    );
+  return (
+    <>
+      <Router>
+        <GifsProvider>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/favorites" element={<Favorites />} />
+          </Routes>
+        </GifsProvider>
+      </Router>
+    </>
+  );
 }
 
 export default App;

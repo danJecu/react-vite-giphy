@@ -11,11 +11,8 @@ body {
   box-sizing: border-box;
 }
 
-header {
-  padding: 0.1rem 2rem;
-}
-
 .navbar {
+  padding: 0.1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -131,6 +128,18 @@ header {
     rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
+.gif-default {
+  width: 18rem;
+  height: 18rem;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.gif-img:hover {
+  box-shadow: rgba(142, 30, 2, 0.959) 6px 2px 16px 2px,
+    rgb(219, 87, 87) -6px -2px 16px 0px;
+}
+
 .favorite {
   box-shadow: rgba(252, 50, 0, 0.959) 10px 12px 5px 0px,
     rgb(247, 123, 123) -10px -4px 16px 0px;
@@ -146,7 +155,7 @@ header {
     rgb(209, 153, 153) -10px -4px 16px 0px;
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 600px) {
   .logo {
     display: none;
   }
@@ -179,8 +188,67 @@ header {
   }
 }
 
-@media screen and (max-widt: 770px) and (min-width: 425px) {
+@media screen and (max-width: 700px) and (min-width: 600px) {
+  .logo {
+    font-size: 2rem;
+  }
+
   .navbar {
-    padding: 10rem;
+    height: 10vh;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 0.5rem 0.3rem;
+  }
+
+  .navbar-input input {
+    width: 40vw;
+    font-size: 1rem;
+    padding: 0.6rem;
+    margin: 0;
+  }
+
+  .navbar-tabs {
+    padding: 0;
+    margin: 0.2rem;
+  }
+
+  .navbar-tabs li a {
+    font-size: 0.8rem;
+  }
+
+  .gif-img {
+    width: 18rem;
+    height: 18rem;
+  }
+}
+
+@media screen and (max-width: 1000px) and (min-width: 700px) {
+  .navbar {
+    height: 10vh;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .navbar-input input {
+    width: 40vw;
+    font-size: 1rem;
+    padding: 0.6rem;
+    margin: 0;
+    height: 40%;
+  }
+
+  .navbar-tabs {
+    padding: 0;
+    margin: 0.2rem;
+  }
+
+  .navbar-tabs li a {
+    font-size: 1rem;
+  }
+
+  .gif-img {
+    width: 18rem;
+    height: 18rem;
   }
 }
