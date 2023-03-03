@@ -9,9 +9,9 @@ The website features a search function that enables users to search for specific
 
 Gif Selector allows users to select their favorite gifs with ease. Once selected, the gifs are saved in local storage for future access. Users can also remove gifs from their favorites by simply clicking on them again.
 
-To manage state effectively, I employed useContext and useReducer.
+To manage state effectively, I employed **useContext** and **useReducer**.
 
-To ensure a visually appealing and intuitive design, I utilized CSS for styling.
+To ensure a visually appealing and intuitive design, I utilized **CSS** for styling.
 
 Thank you for taking the time to explore my project! :beers:
 
