@@ -206,11 +206,7 @@ body {
     font-size: 1rem;
     padding: 0.6rem;
     margin: 0;
-    box-shadow: 0 0 0 3px transparent, 0 0 0 4px #0093e9;
-    background-image: linear-gradient(white, white),
-      linear-gradient(to right, #0093e9, #43b0a4);
-    background-origin: border-box;
-    background-clip: padding-box, border-box;
+    border: 1px solid #3a3a3a;
     color: black;
   }
 
@@ -242,6 +238,7 @@ body {
     font-size: 1rem;
     padding: 0.6rem;
     margin: 0;
+    border: 1px solid #3a3a3a;
     height: 40%;
   }
 
