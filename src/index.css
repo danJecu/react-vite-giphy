@@ -171,7 +171,7 @@ body {
     font-size: 1rem;
     padding: 0.6rem;
     margin: 0;
-    border: #000;
+    border: 1px solid #3a3a3a;
   }
 
   .navbar-tabs {
